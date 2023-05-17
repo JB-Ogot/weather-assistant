@@ -23,8 +23,6 @@ export const Dashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCity]);
 
-  console.log("Weather Data: ", weatherData);
-
   if (isEmpty(selectedCity)) {
     return (
       <div className="shadow-md h-3/4">
