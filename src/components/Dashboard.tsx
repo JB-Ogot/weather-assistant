@@ -56,7 +56,7 @@ export const Dashboard = () => {
             <WiCelsius size="30" />
           </div>
           <FormatText
-            label={`Humidity: ${weatherData?.main?.humidity}`}
+            label={`Humidity: ${weatherData?.main?.humidity || ""}`}
             className="jwa-sm-text"
           />
         </div>
