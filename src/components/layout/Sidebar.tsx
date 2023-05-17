@@ -17,6 +17,16 @@ interface Props {
   children?: ReactNode;
 }
 
+const SidebarHeader = () => {
+  return (
+    <div className="pl-2 pt-6">
+      <span className="text-sm font-sans text-gray-800">
+        Select Search Options
+      </span>
+    </div>
+  );
+};
+
 export const Sidebar: FC<Props> = ({ children }) => {
   const [countries, setCountries] = useState<any[]>([]);
   const { selectedCountry, selectedCity } = useSelector(
@@ -54,11 +64,7 @@ export const Sidebar: FC<Props> = ({ children }) => {
   return (
     <div className="pr-10 flex flex-col justify-between shadow-xl h-1/2 rounded-md">
       <div>
-        <div className="pl-2 pt-6">
-          <span className="text-sm font-sans text-gray-800">
-            Select Search Options
-          </span>
-        </div>
+        <SidebarHeader />
         <Select
           handleChange={handleCountrySelect}
           options={countries}
