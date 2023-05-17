@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/reducers";
 
-const CLIENT_ID =
-  "853779199276-n7m185d3t257dq9t8klln505hppup5bh.apps.googleusercontent.com";
-
 export const GoogleLoginButton = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +19,9 @@ export const GoogleLoginButton = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId={CLIENT_ID}>
+    <GoogleOAuthProvider
+      clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID as string}
+    >
       <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
     </GoogleOAuthProvider>
   );
