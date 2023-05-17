@@ -13,7 +13,7 @@ export const fetchWeatherData = async (cityId: string, token: any) => {
 };
 
 export async function fetchCountries(apiUsername: string) {
-  const baseURL = "http://api.geonames.org/countryInfoJSON";
+  const baseURL = "https://secure.geonames.org/countryInfoJSON";
 
   const url = new URL(baseURL);
   url.searchParams.append("username", apiUsername);
