@@ -1,8 +1,20 @@
 import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchWeatherData } from "../utils";
 import { WiDaySunny, WiCelsius } from "react-icons/wi";
+import { FormatText } from "./FormatText";
+
+const DefaultMessage = () => {
+  return (
+    <div className="shadow-md h-3/4">
+      <FormatText
+        label="Select a country and city to get your weather forecast"
+        className="p-8 jwa-bold-text"
+      />
+    </div>
+  );
+};
 
 export const Dashboard = () => {
   const [weatherData, setWeatherData] = useState<any>({});
@@ -20,13 +32,7 @@ export const Dashboard = () => {
   }, [selectedCity]);
 
   if (isEmpty(selectedCity)) {
-    return (
-      <div className="shadow-md h-3/4">
-        <span className="p-4 pt-4 text-md font-medium text-gray-800">
-          Select a country and city to get your weather forecast
-        </span>
-      </div>
-    );
+    return <DefaultMessage />;
   }
 
   return (
@@ -36,24 +42,23 @@ export const Dashboard = () => {
           <WiDaySunny size="300" />
         </div>
         <div className="flex-1 flex flex-col">
-          <span className="text-xl font-semibold text-gray-900">
-            {selectedCountry.label}
-          </span>
-          <span className="text-md font-medium text-gray-700">
-            {weatherData?.name}
-          </span>
-          <span className="text-sm font-medium text-gray-900">
-            {weatherData?.weather?.[0]?.description}
-          </span>
+          <FormatText label={selectedCountry.label} className="jwa-bold-text" />
+          <FormatText label={weatherData?.name} className="jwa-sm-text" />
+          <FormatText
+            label={weatherData?.weather?.[0]?.description}
+            className="jwa-md-text"
+          />
           <div className="flex flex-row">
-            <span className="text-xl font-semibold text-gray-900">
-              {weatherData?.main?.temp}
-            </span>
+            <FormatText
+              label={weatherData?.main?.temp}
+              className="jwa-bold-text"
+            />
             <WiCelsius size="30" />
           </div>
-          <span className="text-sm font-medium text-gray-700">
-            Humidity: {weatherData?.main?.humidity}
-          </span>
+          <FormatText
+            label={`Humidity: ${weatherData?.main?.humidity}`}
+            className="jwa-sm-text"
+          />
         </div>
       </div>
     </div>

@@ -1,30 +1,35 @@
 import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useJwt } from "react-jwt";
 import { Navigate } from "react-router-dom";
-import { storeGoogleToken } from "../../redux";
 import { MainView } from "./MainView";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 
 export const HomeLayout: FC = () => {
-  const loginToken = localStorage.getItem("token") || "";
-  const dispatch = useDispatch();
+  const loginToken = localStorage.getItem("token") as string;
+  const { decodedToken, isExpired } = useJwt(
+    JSON.parse(loginToken)?.credential
+  );
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token") || "";
-    if (storedToken) {
-      dispatch(storeGoogleToken(JSON.parse(storedToken)));
+    if (decodedToken) {
+      const token: any = decodedToken;
+      const expirationTime = token.exp * 1000;
+      const currentTime = Date.now();
+      if (currentTime >= expirationTime) {
+        localStorage.removeItem("token");
+      }
     }
-  }, [dispatch]);
+  }, [decodedToken]);
 
-  if (!loginToken) {
+  if (!loginToken || isExpired) {
     return <Navigate to="/login" />;
   }
 
   return (
     <div className="h-full overflow-hidden">
       <Navbar />
-      <div className="flex flex-row h-full w-full px-20 py-10">
+      <div className="jwa-main-layout">
         <Sidebar />
         <MainView />
       </div>

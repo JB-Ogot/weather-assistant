@@ -7,13 +7,11 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({ onClick, label }) => {
   return (
-    <div>
-      <button
-        className="text-sm text-gray-900 font-medium bg-gray-200 p-2 rounded-md"
-        onClick={onClick}
-      >
-        {label}
-      </button>
-    </div>
+    <button
+      className="text-sm text-gray-900 font-medium bg-gray-200 p-2 rounded-md"
+      onClick={onClick}
+    >
+      {label}
+    </button>
   );
 };

@@ -78,7 +78,7 @@ export const Sidebar: FC<Props> = ({ children }) => {
         )}
       </div>
       {!isEmpty(selectedCity) && (
-        <div className="flex justify-center items-center pb-6">
+        <div className="jwa-flex-center pb-6">
           <Button label="Clear Search" onClick={handleClearSearch} />
         </div>
       )}
