@@ -1,5 +1,4 @@
 export const fetchWeatherData = async (cityId: string) => {
-  console.log("process: ", process.env.REACT_APP_API_KEY);
   try {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
@@ -17,7 +16,7 @@ export async function fetchCountries() {
   const url = new URL(baseURL);
   url.searchParams.append(
     "username",
-    process.env.REACT_APP_GEONAMES_USER || ""
+    process.env.REACT_APP_GEONAMES_USER as string
   );
 
   try {
