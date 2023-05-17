@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 interface FormatTextProps {
-  label: string;
+  label?: string;
   className: string;
 }
 
 export const FormatText: FC<FormatTextProps> = ({ label, className }) => {
-  return <span className={className}>{label}</span>;
+  return <>{label && <span className={className}>{label}</span>}</>;
 };
