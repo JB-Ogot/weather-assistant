@@ -16,9 +16,16 @@ const dashboardSlice = createSlice({
     setSelectedCity: (state, action) => {
       state.selectedCity = action.payload;
     },
+    clearSelectedCity: (state) => {
+      state.selectedCity = null;
+    },
   },
 });
 
-export const { setSelectedCountry, setSelectedCity, clearSelectedCountry } =
-  dashboardSlice.actions;
+export const {
+  setSelectedCountry,
+  setSelectedCity,
+  clearSelectedCountry,
+  clearSelectedCity,
+} = dashboardSlice.actions;
 export default dashboardSlice.reducer;

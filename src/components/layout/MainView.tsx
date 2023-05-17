@@ -7,7 +7,7 @@ interface Props {
 
 export const MainView: FC<Props> = ({ children }) => {
   return (
-    <div>
+    <div className="flex-1 w-64 pl-10">
       <Dashboard />
     </div>
   );

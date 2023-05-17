@@ -1,24 +1,11 @@
 const API_KEY = "7b588b6718094c44b13d42cdb87f71f9";
 
-export const fetchWeatherData = async (lat: any, lon: any) => {
+export const fetchWeatherData = async (cityId: string, token: any) => {
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${API_KEY}&units=metric`
     );
     const data = await response.json();
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const fetchCityCoordinates = async (cityId: string) => {
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${API_KEY}`
-    );
-    const data = await response.json();
-    console.log("Response: ", data);
     return data;
   } catch (error) {
     console.log("Error: ", error);
