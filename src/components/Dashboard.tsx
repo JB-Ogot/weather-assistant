@@ -9,14 +9,10 @@ export const Dashboard = () => {
   const { selectedCity, selectedCountry } = useSelector(
     (state: any) => state.dashboard
   );
-  const storedToken = localStorage.getItem("token") || "";
 
   useEffect(() => {
     if (selectedCity) {
-      fetchWeatherData(
-        selectedCity.value,
-        JSON.parse(storedToken).credential
-      ).then((data) => {
+      fetchWeatherData(selectedCity.value).then((data) => {
         setWeatherData(data);
       });
     }
@@ -58,7 +54,6 @@ export const Dashboard = () => {
           <span className="text-sm font-medium text-gray-700">
             Humidity: {weatherData?.main?.humidity}
           </span>
-          <span className="text-sm font-medium text-gray-700"></span>
         </div>
       </div>
     </div>

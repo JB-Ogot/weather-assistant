@@ -6,7 +6,7 @@ import { MainView } from "./MainView";
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
 
-export const Layout: FC = () => {
+export const HomeLayout: FC = () => {
   const loginToken = localStorage.getItem("token") || "";
   const dispatch = useDispatch();
 

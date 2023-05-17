@@ -1,5 +1,5 @@
 import { ReactNode, FC } from "react";
-import { Dashboard } from "../../pages";
+import { Dashboard } from "../Dashboard";
 
 interface Props {
   children?: ReactNode;

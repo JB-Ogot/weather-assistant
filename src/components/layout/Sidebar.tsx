@@ -13,8 +13,6 @@ import { citiesList } from "../../utils";
 import { useSelector } from "react-redux";
 import { Button } from "../Button";
 
-const GEO_NAMES_USER = "h3mitt";
-
 interface Props {
   children?: ReactNode;
 }
@@ -40,7 +38,7 @@ export const Sidebar: FC<Props> = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchCountries(GEO_NAMES_USER)
+    fetchCountries()
       .then((data) => {
         const selectOptions = data.map((country: any) => ({
           value: country.code,

@@ -1,9 +1,8 @@
-const API_KEY = "7b588b6718094c44b13d42cdb87f71f9";
-
-export const fetchWeatherData = async (cityId: string, token: any) => {
+export const fetchWeatherData = async (cityId: string) => {
+  console.log("process: ", process.env.REACT_APP_API_KEY);
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     );
     const data = await response.json();
     return data;
@@ -12,11 +11,14 @@ export const fetchWeatherData = async (cityId: string, token: any) => {
   }
 };
 
-export async function fetchCountries(apiUsername: string) {
+export async function fetchCountries() {
   const baseURL = "https://secure.geonames.org/countryInfoJSON";
 
   const url = new URL(baseURL);
-  url.searchParams.append("username", apiUsername);
+  url.searchParams.append(
+    "username",
+    process.env.REACT_APP_GEONAMES_USER || ""
+  );
 
   try {
     const response = await fetch(url);
