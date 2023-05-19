@@ -5,6 +5,7 @@ const dashboardSlice = createSlice({
   initialState: {
     selectedCountry: null,
     selectedCity: null,
+    loader: false,
   },
   reducers: {
     setSelectedCountry: (state, action) => {
@@ -19,6 +20,9 @@ const dashboardSlice = createSlice({
     clearSelectedCity: (state) => {
       state.selectedCity = null;
     },
+    toggleLoader: (state) => {
+      state.loader = !state.loader;
+    },
   },
 });
 
@@ -27,5 +31,6 @@ export const {
   setSelectedCity,
   clearSelectedCountry,
   clearSelectedCity,
+  toggleLoader,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   clearSelectedCity,
@@ -6,16 +6,11 @@ import {
   setSelectedCity,
   setSelectedCountry,
 } from "../../redux/reducers";
-import { fetchCountries } from "../../utils";
+import { fetchCountries, findCities } from "../../utils";
 import { Select } from "../formComponents/Select";
 import { isEmpty } from "lodash";
-import { citiesList } from "../../utils";
 import { useSelector } from "react-redux";
 import { Button } from "../Button";
-
-interface Props {
-  children?: ReactNode;
-}
 
 const SidebarHeader = () => {
   return (
@@ -27,12 +22,14 @@ const SidebarHeader = () => {
   );
 };
 
-export const Sidebar: FC<Props> = ({ children }) => {
+export const Sidebar = () => {
   const [countries, setCountries] = useState<any[]>([]);
   const { selectedCountry, selectedCity } = useSelector(
     (state: any) => state.dashboard
   );
   const dispatch = useDispatch();
+
+  const cities = findCities(selectedCountry);
 
   const handleCountrySelect = (option: any) => {
     dispatch(setSelectedCountry(option));
@@ -73,12 +70,7 @@ export const Sidebar: FC<Props> = ({ children }) => {
         {!isEmpty(selectedCountry) && (
           <Select
             handleChange={handleCitySelect}
-            options={citiesList
-              .filter((city) => city.country === selectedCountry.value)
-              .map((city) => ({
-                label: city.name,
-                value: `${city.id}`,
-              }))}
+            options={cities}
             label="Select a City"
           />
         )}
